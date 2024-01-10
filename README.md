@@ -24,5 +24,5 @@ Ridwan Currency Converter is a web application built with HTML, CSS, and JavaScr
 - Node.js installed 
 
  
-- Feel free to adjust or expand it as needed!
+
 
