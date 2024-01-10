@@ -1,7 +1,8 @@
 const baseCurrency = document.getElementById("baseCurrency");
 const targetCurrency = document.getElementById("targetCurrency");
-
-function update_dropdownlist() {
+const convertBTN = document.getElementById("convertCurrencyBTN");
+const targetCurrencyAmountValue = document.getElementById("targetCurrencyAmount");
+function currencySelector() {
   fetch("../packages/currencySymbols.json")
     .then((response) => response.json())
     .then((currencySymbols) => {
@@ -25,31 +26,28 @@ function update_dropdownlist() {
     });
 }
 
-function apiCall() {
-  const appId = "b010664484b3488e8998f0fac8169401";
+function currencyRates() {
+  fetch("../packages/rates.json")
+    .then((response) => response.json())
+    .then((currencyExchangeRate) => {
+      // conversion logic
+      const amountToConvert = parseFloat(
+        document.getElementById("baseCurrencyAmount").value
+      );
 
-  $.get(
-    "https://openexchangerates.org/api/latest.json",
-    { app_id: appId },
-    function (data) {
-      currencyKeys = Object.keys(data.rates);
-      currencyValues = Object.values(data.rates);
-      console.log(currencyKeys.length);
-      // console.log(currencyValues);
-    }
-  );
+      let baseExchangeRate = currencyExchangeRate[baseCurrency.value];
+      let targetExchangeRate = currencyExchangeRate[targetCurrency.value];
+
+      const amountInUSD = amountToConvert / baseExchangeRate;
+      const targetCurrencyAmount = amountInUSD * targetExchangeRate;
+
+      targetCurrencyAmountValue.innerHTML = `${targetCurrencyAmount.toFixed(2)} `
+
+    });
 }
 
-function register_function() {
-  apiCall();
-  console.log("appi call successfull... ");
-  console.log(currencyKeys);
-
-  // call drow down list update
-  update_dropdownlist();
-  console.log("update complete");
-
-  computer;
-}
-
-document.addEventListener("DOMContentLoaded", register_function);
+let scriptLoad = () => {
+  currencySelector();
+};
+convertBTN.addEventListener("click", currencyRates);
+document.addEventListener("DOMContentLoaded", scriptLoad);

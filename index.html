@@ -49,28 +49,25 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
-          <button class="btn btn-warning ms-5" id="convertCurrencyBTN">
+        <div class="col text-center mb-3 mt-2">
+          <button class="btn btn-warning px-5" id="convertCurrencyBTN">
             Convert
           </button>
         </div>
-        <div class="col">
-          <div class="card p-2 px-3">
-            <h6 class="" id="targetCurrencyAmount">$45</h6>
-            <p id="curencyRate">0.25%</p>
-            <p>
-              <span id="conversionDate"></span>
-              <span id="conversionTime"></span>
-            </p>
-          </div>
+      
+      </div>
+      <div class="row">
+        <div class="card p-2 px-3">
+          <h5 class="mt-2 text-center" id="targetCurrencyAmount">Conversion Here...</h6>
         </div>
       </div>
-      <canvas
+      <!-- <canvas
         id="currencyGraphCanvas"
         class="w-100 border mt-4 rounded bg-white"
         height="85px"
       >
-      </canvas>
+      </canvas> -->
+      <!-- in this canvas i wish to create a chart that shows graphical history of currency rates by calling to api history, i planned on drawing the chart using chart.js  -->
     </div>
 
 
